@@ -26,7 +26,7 @@ const App = () => {
     if (!loggedIn) {
       return <Login />;
     }
-    console.log(auth.currentUser);
+
     return <Home />;
   };
 
