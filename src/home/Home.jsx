@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Header from './components/Header';
 import { COLORS } from '../constants/theme';
-import { fetchCategories, fetchExpensesFromUser } from '../redux/actions';
+import { fetchCategories } from '../redux/actions';
+import ExpenseChart from './components/ExpenseChart';
 
 const Home = (props) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
   useEffect(() => {
     props.fetchCategories();
   }, []);
@@ -14,7 +17,9 @@ const Home = (props) => {
     <div>
       <Header />
       <div style={styles.container}>
-        <div style={styles.expenseSummary}></div>
+        <div style={styles.expenseSummary}>
+          <ExpenseChart {...{ selectedCategory, setSelectedCategory }} />
+        </div>
         <div style={styles.expenseList}></div>
       </div>
     </div>
@@ -22,19 +27,22 @@ const Home = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ fetchCategories, fetchExpensesFromUser }, dispatch);
+  bindActionCreators({ fetchCategories }, dispatch);
 
 export default connect(null, mapDispatchToProps)(Home);
 
 const styles = {
   container: {
     display: 'flex',
-    height: '100vh',
+    height: 'calc(100vh - 71px)', //header + header border
     backgroundColor: COLORS.lightGray2,
+    overflow: 'hidden',
   },
   expenseSummary: {
     flex: 7,
     borderRight: `1px solid ${COLORS.darkGray}`,
+    display: 'flex',
+    justifyContent: 'center',
   },
   expenseList: { flex: 3 },
 };
