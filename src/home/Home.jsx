@@ -6,6 +6,7 @@ import { COLORS } from '../constants/theme';
 import { fetchCategories } from '../redux/actions';
 import ExpenseList from './components/ExpenseList';
 import ExpenseChart from './components/ExpenseChart';
+import ExpenseSummary from './components/ExpenseSummary';
 
 const Home = (props) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -20,6 +21,7 @@ const Home = (props) => {
       <div style={styles.container}>
         <div style={styles.expenseSummary}>
           <ExpenseChart {...{ selectedCategory, setSelectedCategory }} />
+          <ExpenseSummary {...{ selectedCategory, setSelectedCategory }} />
         </div>
         <div style={styles.expenseList}>
           <ExpenseList />
@@ -45,7 +47,9 @@ const styles = {
     flex: 7,
     borderRight: `1px solid ${COLORS.darkGray}`,
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   expenseList: { flex: 3 },
 };
