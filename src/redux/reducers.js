@@ -2,6 +2,7 @@ import {
   CATEGORIES_CHANGE,
   EXPENSES_CHANGE,
   UPDATE_EXPENSE,
+  ADD_EXPENSE,
 } from './constants';
 
 const initialState = {
@@ -39,6 +40,18 @@ const reducer = (state = initialState, action) => {
                     ? action.updatedExpense
                     : expense
                 ),
+              }
+            : category
+        ),
+      };
+    case ADD_EXPENSE:
+      return {
+        ...state,
+        categoriesData: state.categoriesData.map((category) =>
+          category.id === action.categoryId
+            ? {
+                ...category,
+                expenses: [...category.expenses, action.addedExpense],
               }
             : category
         ),

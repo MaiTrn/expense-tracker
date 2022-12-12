@@ -7,6 +7,7 @@ import {
   doc,
   updateDoc,
   getDoc,
+  addDoc,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import {
@@ -14,6 +15,7 @@ import {
   EXPENSES_CHANGE,
   INVALID_CATEGORY_ID,
   UPDATE_EXPENSE,
+  ADD_EXPENSE,
 } from './constants';
 
 const currentDate = new Date();
@@ -113,4 +115,37 @@ const confirmExpense = (item, categoryId) => {
   };
 };
 
-export { fetchCategories, fetchExpensesFromUser, confirmExpense };
+const addExpense = (values) => {
+  return async (dispatch) => {
+    const expensesRef = collection(
+      db,
+      'usersData',
+      auth?.currentUser.uid,
+      'expensesData',
+      values.selectedCategory,
+      'expenses'
+    );
+
+    const docRef = await addDoc(expensesRef, {
+      title: values.title,
+      description: values?.description,
+      location: values?.location,
+      status: values.status,
+      total: values.total,
+      creation: {
+        date: currentDate.getDate(),
+        month: currentDate.getMonth() + 1,
+        year: currentDate.getFullYear(),
+      },
+    });
+    const addedExpense = await getDoc(docRef);
+
+    dispatch({
+      type: ADD_EXPENSE,
+      categoryId: values.selectedCategory,
+      addedExpense: { ...addedExpense.data(), id: addedExpense.id },
+    });
+  };
+};
+
+export { fetchCategories, fetchExpensesFromUser, confirmExpense, addExpense };
