@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import icons from '../../constants/icons';
 import { COLORS, SIZES } from '../../constants/theme';
 
 const ExpenseSummary = (props) => {
@@ -33,27 +30,53 @@ const ExpenseSummary = (props) => {
       <h2 style={{ paddingLeft: 20, color: COLORS.primary }}>Categories</h2>
       <div style={styles.categoriesContainer}>
         {categories.map((category) => {
-          const icon = icons[category.icon];
+          const setColor = (selectedColor, defaultColor) =>
+            props.selectedCategory?.name === category.name
+              ? selectedColor
+              : defaultColor;
+
           return (
             <div
               style={{
                 ...styles.categoryContainer,
-                boxShadow: `0px 5px 10px ${
-                  props.selectedCategory?.name === category.name
-                    ? category.color
-                    : COLORS.darkGray
-                }`,
+                backgroundColor: setColor(category.color, COLORS.white),
               }}
               key={category.id}
               onClick={() => setSelectCategoryByName(category.name)}
             >
-              <FontAwesomeIcon
-                icon={fas[icon]}
-                color={category.color}
-                style={{ width: 50, height: 50 }}
-              />
-              <p style={styles.categoryName}>{category.name}</p>
-              <p style={styles.categoryTotal}>{category.total}€</p>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                }}
+              >
+                <div
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 5,
+                    marginRight: 10,
+                    backgroundColor: setColor(COLORS.white, category.color),
+                  }}
+                />
+                <p
+                  style={{
+                    ...styles.categoryName,
+                    color: setColor(COLORS.white, COLORS.darkGray),
+                  }}
+                >
+                  {category.name}
+                </p>
+              </div>
+              <p
+                style={{
+                  ...styles.categoryTotal,
+                  color: setColor(COLORS.white, COLORS.primary),
+                }}
+              >
+                {category.total?.toFixed(0)}€
+              </p>
             </div>
           );
         })}
@@ -78,32 +101,29 @@ const styles = {
     margin: 10,
   },
   categoriesContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: 'grid',
+    gridTemplateColumns: 'auto auto auto',
     justifyContent: 'center',
+    flex: 0.8,
   },
   categoryContainer: {
     display: 'flex',
-    flexDirection: 'column',
     flex: 1,
-    alignItems: 'flex-start',
-    height: 150,
-    minWidth: 120,
-    backgroundColor: COLORS.white,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '19vw',
+    boxShadow: `0px 5px 10px ${COLORS.darkGray}`,
     borderRadius: SIZES.borderRadius.l,
     margin: 5,
     padding: SIZES.padding,
   },
   categoryName: {
-    color: COLORS.darkGray,
     fontSize: SIZES.h3,
     fontWeight: '500',
-    marginTop: '30px',
-    marginBottom: '5px',
+    margin: 0,
   },
   categoryTotal: {
     fontWeight: 'bold',
-    color: COLORS.primary,
     fontSize: SIZES.body2,
     margin: 0,
   },
