@@ -116,6 +116,7 @@ const styles = {
     borderRadius: SIZES.borderRadius.l,
     margin: 5,
     padding: SIZES.padding,
+    cursor: 'pointer',
   },
   categoryName: {
     fontSize: SIZES.h3,

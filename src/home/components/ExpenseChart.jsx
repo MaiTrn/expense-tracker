@@ -55,62 +55,66 @@ const ExpenseChart = (props) => {
     0
   );
 
-  if (chartData.length === 0) {
-    return <div style={styles.noExpenseContainer}>No record</div>;
-  }
-
   return (
     <div style={styles.container}>
-      <svg
-        viewBox='-25 -25 450 450'
-        width='450px'
-        height='450px'
-        style={{ zIndex: 99 }}
-      >
-        <VictoryPie
-          standalone={false}
-          data={chartData}
-          colorScale={colorScales}
-          labels={(datum) => `${datum.y}`}
-          radius={({ datum }) =>
-            props.selectedCategory &&
-            props.selectedCategory?.name === datum.name
-              ? 210
-              : 200
-          }
-          innerRadius={70}
-          labelRadius={({ innerRadius }) => (210 + innerRadius) / 2.5}
-          style={{
-            labels: { fill: COLORS.white, fontSize: SIZES.h2 },
-          }}
-          events={[
-            {
-              target: 'data',
-              eventHandlers: {
-                onClick: () => {
-                  return [
-                    {
-                      target: 'labels',
-                      mutation: (props) => {
-                        const categoryName = chartData[props.index].name;
-                        return setSelectCategoryByName(categoryName);
-                      },
+      {chartData.length > 0 && (
+        <>
+          <svg
+            viewBox='-25 -25 450 450'
+            width='450px'
+            height='450px'
+            style={{ zIndex: 99 }}
+          >
+            <VictoryPie
+              standalone={false}
+              data={chartData}
+              colorScale={colorScales}
+              labels={(datum) => `${datum.y}`}
+              radius={({ datum }) =>
+                props.selectedCategory &&
+                props.selectedCategory?.name === datum.name
+                  ? 210
+                  : 200
+              }
+              innerRadius={70}
+              labelRadius={({ innerRadius }) => (210 + innerRadius) / 2.5}
+              style={{
+                labels: { fill: COLORS.white, fontSize: SIZES.h2 },
+              }}
+              events={[
+                {
+                  target: 'data',
+                  eventHandlers: {
+                    onClick: () => {
+                      return [
+                        {
+                          target: 'labels',
+                          mutation: (props) => {
+                            const categoryName = chartData[props.index].name;
+                            return setSelectCategoryByName(categoryName);
+                          },
+                        },
+                      ];
                     },
-                  ];
+                  },
                 },
-              },
-            },
-          ]}
-        />
-        <text x={191} y={200} style={styles.expenseCountTitle}>
-          {totalExpenseCount}
-        </text>
-        <text x={160} y={230} style={styles.expenseText}>
-          Expenses
-        </text>
-      </svg>
-      {/*box shadow*/}
-      <div style={styles.shadow} />
+              ]}
+            />
+            <text x={191} y={200} style={styles.expenseCountTitle}>
+              {totalExpenseCount}
+            </text>
+            <text x={160} y={230} style={styles.expenseText}>
+              Expenses
+            </text>
+          </svg>
+          {/*box shadow*/}
+          <div style={styles.shadow} />
+        </>
+      )}
+
+      {chartData.length === 0 && (
+        <div style={styles.noExpenseContainer}>No record</div>
+      )}
     </div>
   );
 };
@@ -124,8 +128,6 @@ const styles = {
   noExpenseContainer: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    height: 450,
     color: COLORS.primary,
     fontSize: SIZES.h2,
     fontWeight: 'bold',
@@ -150,7 +152,11 @@ const styles = {
   },
   shadow: {
     position: 'absolute',
-    top: 25,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    margin: 'auto',
     backgroundColor: 'transparent',
     height: 400,
     width: 400,
