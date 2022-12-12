@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Calendar from 'react-calendar';
+import { Snackbar, Alert } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 import Header from './components/Header';
 import { COLORS } from '../constants/theme';
 import { fetchCategories } from '../redux/actions';
+
 import ExpenseList from './components/ExpenseList';
 import ExpenseChart from './components/ExpenseChart';
 import ExpenseSummary from './components/ExpenseSummary';
 import AddExpenseModal from '../expense-adder/AddExpenseModal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../constants/Calendar.css';
 
 const Home = (props) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [open, setOpen] = useState(false);
+  const [added, setAdded] = useState(false);
 
   useEffect(() => {
     props.fetchCategories();
@@ -48,7 +52,21 @@ const Home = (props) => {
           <ExpenseList />
         </div>
       </div>
-      {open && <AddExpenseModal setOpen={setOpen} />}
+      {open && <AddExpenseModal setOpen={setOpen} setAdded={setAdded} />}
+      <Snackbar
+        open={added}
+        autoHideDuration={4000}
+        onClose={() => setAdded(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert
+          onClose={() => setAdded(false)}
+          severity='success'
+          sx={{ width: '100%' }}
+        >
+          Added a new expense!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

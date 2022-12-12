@@ -38,6 +38,7 @@ const AddExpenseModal = (props) => {
 
   const saveExpense = (values) => {
     props.addExpense(values);
+    props.setAdded(true);
     props.setOpen(false);
   };
 
