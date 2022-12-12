@@ -30,7 +30,7 @@ const ExpenseList = (props) => {
         Pending Expenses
       </h2>
       {totalExpenses > 0 && (
-        <ul style={{}}>
+        <ul>
           {incomingExpenses.map((category) => {
             const iconName = icons[category.icon];
             return category.expenses?.map((expense) => {
@@ -49,21 +49,23 @@ const ExpenseList = (props) => {
                       <p style={styles.expenseDescription}>
                         {expense.description}
                       </p>
-                      <div
-                        style={{
-                          display: 'flex',
-                          color: COLORS.darkGray,
-                          alignItems: 'center',
-                        }}
-                      >
-                        <FontAwesomeIcon
-                          icon={fas['faLocationDot']}
-                          size='sm'
-                        />
-                        <span style={{ paddingLeft: SIZES.spacing.s }}>
-                          {expense.location}
-                        </span>
-                      </div>
+                      {expense.location && (
+                        <div
+                          style={{
+                            display: 'flex',
+                            color: COLORS.darkGray,
+                            alignItems: 'center',
+                          }}
+                        >
+                          <FontAwesomeIcon
+                            icon={fas['faLocationDot']}
+                            size='sm'
+                          />
+                          <span style={{ paddingLeft: SIZES.spacing.s }}>
+                            {expense.location}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div

@@ -48,7 +48,7 @@ const styles = {
     padding: '0 2rem',
     borderBottom: `1px solid ${COLORS.darkGray}`,
     position: 'sticky',
-    zIndex: 999,
+    zIndex: 990,
     top: 0,
     margin: 0,
   },
