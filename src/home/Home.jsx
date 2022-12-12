@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import Header from './components/Header';
 import { COLORS } from '../constants/theme';
 import { fetchCategories } from '../redux/actions';
+import ExpenseList from './components/ExpenseList';
 import ExpenseChart from './components/ExpenseChart';
 
 const Home = (props) => {
@@ -20,7 +21,9 @@ const Home = (props) => {
         <div style={styles.expenseSummary}>
           <ExpenseChart {...{ selectedCategory, setSelectedCategory }} />
         </div>
-        <div style={styles.expenseList}></div>
+        <div style={styles.expenseList}>
+          <ExpenseList />
+        </div>
       </div>
     </div>
   );

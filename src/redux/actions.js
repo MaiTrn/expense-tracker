@@ -1,9 +1,19 @@
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  doc,
+  updateDoc,
+  getDoc,
+} from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import {
   CATEGORIES_CHANGE,
   EXPENSES_CHANGE,
   INVALID_CATEGORY_ID,
+  UPDATE_EXPENSE,
 } from './constants';
 
 const currentDate = new Date();
@@ -74,4 +84,33 @@ const fetchCategories = () => {
   };
 };
 
-export { fetchCategories, fetchExpensesFromUser };
+const confirmExpense = (item, categoryId) => {
+  return async (dispatch) => {
+    const expenseRef = doc(
+      db,
+      'usersData',
+      auth?.currentUser.uid,
+      'expensesData',
+      categoryId,
+      'expenses',
+      item.id
+    );
+
+    await updateDoc(expenseRef, {
+      status: 'C',
+      creation: {
+        month: currentDate.getMonth() + 1,
+        year: currentDate.getFullYear(),
+      },
+    });
+    const updatedExpense = await getDoc(expenseRef);
+
+    dispatch({
+      type: UPDATE_EXPENSE,
+      categoryId,
+      updatedExpense: { ...updatedExpense.data(), id: updatedExpense.id },
+    });
+  };
+};
+
+export { fetchCategories, fetchExpensesFromUser, confirmExpense };
