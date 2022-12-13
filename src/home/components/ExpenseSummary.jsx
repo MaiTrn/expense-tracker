@@ -27,60 +27,64 @@ const ExpenseSummary = (props) => {
 
   return (
     <div style={styles.container}>
-      <h2 style={{ paddingLeft: 20, color: COLORS.primary }}>Categories</h2>
-      <div style={styles.categoriesContainer}>
-        {categories.map((category) => {
-          const setColor = (selectedColor, defaultColor) =>
-            props.selectedCategory?.name === category.name
-              ? selectedColor
-              : defaultColor;
+      {categories.length > 0 && (
+        <>
+          <h2 style={{ paddingLeft: 20, color: COLORS.primary }}>Categories</h2>
+          <div style={styles.categoriesContainer}>
+            {categories.map((category) => {
+              const setColor = (selectedColor, defaultColor) =>
+                props.selectedCategory?.name === category.name
+                  ? selectedColor
+                  : defaultColor;
 
-          return (
-            <div
-              style={{
-                ...styles.categoryContainer,
-                backgroundColor: setColor(category.color, COLORS.white),
-              }}
-              key={category.id}
-              onClick={() => setSelectCategoryByName(category.name)}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                }}
-              >
+              return (
                 <div
                   style={{
-                    width: 20,
-                    height: 20,
-                    borderRadius: 5,
-                    marginRight: 10,
-                    backgroundColor: setColor(COLORS.white, category.color),
+                    ...styles.categoryContainer,
+                    backgroundColor: setColor(category.color, COLORS.white),
                   }}
-                />
-                <p
-                  style={{
-                    ...styles.categoryName,
-                    color: setColor(COLORS.white, COLORS.darkGray),
-                  }}
+                  key={category.id}
+                  onClick={() => setSelectCategoryByName(category.name)}
                 >
-                  {category.name}
-                </p>
-              </div>
-              <p
-                style={{
-                  ...styles.categoryTotal,
-                  color: setColor(COLORS.white, COLORS.primary),
-                }}
-              >
-                {category.total?.toFixed(0)}€
-              </p>
-            </div>
-          );
-        })}
-      </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 5,
+                        marginRight: 10,
+                        backgroundColor: setColor(COLORS.white, category.color),
+                      }}
+                    />
+                    <p
+                      style={{
+                        ...styles.categoryName,
+                        color: setColor(COLORS.white, COLORS.darkGray),
+                      }}
+                    >
+                      {category.name}
+                    </p>
+                  </div>
+                  <p
+                    style={{
+                      ...styles.categoryTotal,
+                      color: setColor(COLORS.white, COLORS.primary),
+                    }}
+                  >
+                    {category.total?.toFixed(0)}€
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };
