@@ -45,6 +45,7 @@ const ExpenseSummary = (props) => {
                   }}
                   key={category.id}
                   onClick={() => setSelectCategoryByName(category.name)}
+                  data-testid='category-summary-container'
                 >
                   <div
                     style={{
@@ -54,6 +55,7 @@ const ExpenseSummary = (props) => {
                     }}
                   >
                     <div
+                      data-testid={`category-${category.id}-color`}
                       style={{
                         width: 20,
                         height: 20,
