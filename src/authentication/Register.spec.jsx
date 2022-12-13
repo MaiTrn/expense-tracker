@@ -51,16 +51,12 @@ describe('Register', () => {
   describe('when typing in email', () => {
     describe('if email is left empty', () => {
       it('shows the correct error', async () => {
-        user.pointer({
-          target: screen.getByPlaceholderText('Enter your email'),
-          keys: '[MouseLeft]',
-        });
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(screen.getByPlaceholderText('Enter your email'));
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(screen.getByText('Required!')).toBeInTheDocument();
         });
@@ -73,12 +69,11 @@ describe('Register', () => {
           screen.getByPlaceholderText('Enter your email'),
           'test'
         );
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(screen.getByText('Invalid email!')).toBeInTheDocument();
         });
@@ -91,12 +86,11 @@ describe('Register', () => {
           screen.getByPlaceholderText('Enter your email'),
           'test@gmail.com'
         );
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(screen.queryByText('Invalid email!')).not.toBeInTheDocument();
         });
@@ -108,16 +102,12 @@ describe('Register', () => {
   describe('when typing in password', () => {
     describe('if password is left empty', () => {
       it('shows the correct error', async () => {
-        user.pointer({
-          target: screen.getByPlaceholderText('Enter your password'),
-          keys: '[MouseLeft]',
-        });
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(screen.getByPlaceholderText('Enter your password'));
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(screen.getByText('Required!')).toBeInTheDocument();
         });
@@ -130,12 +120,11 @@ describe('Register', () => {
           screen.getByPlaceholderText('Enter your password'),
           'test'
         );
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(screen.getByText('Too short!')).toBeInTheDocument();
         });
@@ -147,12 +136,11 @@ describe('Register', () => {
           screen.getByPlaceholderText('Enter your password'),
           'seddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua. '
         );
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(screen.getByText('Too long!')).toBeInTheDocument();
         });
@@ -165,12 +153,11 @@ describe('Register', () => {
           screen.getByPlaceholderText('Enter your password'),
           'testing'
         );
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(screen.queryByText('Required!')).not.toBeInTheDocument();
         });
@@ -190,12 +177,11 @@ describe('Register', () => {
           screen.getByPlaceholderText('Confirm your password'),
           'testin'
         );
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(
             screen.getByText('Password does not match!')
@@ -214,12 +200,11 @@ describe('Register', () => {
           screen.getByPlaceholderText('Confirm your password'),
           'testing'
         );
-        user.pointer({
-          target: screen.getByRole('heading', {
+        user.click(
+          screen.getByRole('heading', {
             name: 'Sign up and track your expenses',
-          }),
-          keys: '[MouseLeft]',
-        });
+          })
+        );
         await waitFor(() => {
           expect(
             screen.queryByText('Password does not match!')

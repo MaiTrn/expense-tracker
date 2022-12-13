@@ -42,14 +42,8 @@ describe('Login', () => {
   describe('when typing in email', () => {
     describe('if email is left empty', () => {
       it('shows the correct error', async () => {
-        user.pointer({
-          target: screen.getByPlaceholderText('Enter your email'),
-          keys: '[MouseLeft]',
-        });
-        user.pointer({
-          target: screen.getByRole('heading', { name: 'Expense Tracker' }),
-          keys: '[MouseLeft]',
-        });
+        user.click(screen.getByPlaceholderText('Enter your email'));
+        user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
         await waitFor(() => {
           expect(screen.getByText('Required!')).toBeInTheDocument();
         });
@@ -62,10 +56,7 @@ describe('Login', () => {
           screen.getByPlaceholderText('Enter your email'),
           'test'
         );
-        user.pointer({
-          target: screen.getByRole('heading', { name: 'Expense Tracker' }),
-          keys: '[MouseLeft]',
-        });
+        user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
         await waitFor(() => {
           expect(screen.getByText('Invalid email!')).toBeInTheDocument();
         });
@@ -78,10 +69,7 @@ describe('Login', () => {
           screen.getByPlaceholderText('Enter your email'),
           'test@gmail.com'
         );
-        user.pointer({
-          target: screen.getByRole('heading', { name: 'Expense Tracker' }),
-          keys: '[MouseLeft]',
-        });
+        user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
         await waitFor(() => {
           expect(screen.queryByText('Invalid email!')).not.toBeInTheDocument();
         });
@@ -93,14 +81,8 @@ describe('Login', () => {
   describe('when typing in password', () => {
     describe('if password is left empty', () => {
       it('shows the correct error', async () => {
-        user.pointer({
-          target: screen.getByPlaceholderText('Enter your password'),
-          keys: '[MouseLeft]',
-        });
-        user.pointer({
-          target: screen.getByRole('heading', { name: 'Expense Tracker' }),
-          keys: '[MouseLeft]',
-        });
+        user.click(screen.getByPlaceholderText('Enter your password'));
+        user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
         await waitFor(() => {
           expect(screen.getByText('Required!')).toBeInTheDocument();
         });
@@ -113,10 +95,7 @@ describe('Login', () => {
           screen.getByPlaceholderText('Enter your password'),
           'testing'
         );
-        user.pointer({
-          target: screen.getByRole('heading', { name: 'Expense Tracker' }),
-          keys: '[MouseLeft]',
-        });
+        user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
         await waitFor(() => {
           expect(screen.queryByText('Required!')).not.toBeInTheDocument();
         });
