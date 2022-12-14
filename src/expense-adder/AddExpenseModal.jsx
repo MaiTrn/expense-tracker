@@ -16,7 +16,7 @@ const expenseSchema = Yup.object().shape({
     60,
     'Description cannot be longer than 60 words!'
   ),
-  location: Yup.string().max(20, 'Description cannot be longer than 60 words!'),
+  location: Yup.string().max(20, 'Location cannot be longer than 20 words!'),
   status: Yup.string().required('Required!'),
   total: Yup.number().required('Required!'),
 });
