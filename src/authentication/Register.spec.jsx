@@ -57,9 +57,8 @@ describe('Register', () => {
             name: 'Sign up and track your expenses',
           })
         );
-        await waitFor(() => {
-          expect(screen.getByText('Required!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Required!')).toBeInTheDocument();
       });
     });
 
@@ -74,9 +73,8 @@ describe('Register', () => {
             name: 'Sign up and track your expenses',
           })
         );
-        await waitFor(() => {
-          expect(screen.getByText('Invalid email!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Invalid email!')).toBeInTheDocument();
       });
     });
 
@@ -108,9 +106,8 @@ describe('Register', () => {
             name: 'Sign up and track your expenses',
           })
         );
-        await waitFor(() => {
-          expect(screen.getByText('Required!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Required!')).toBeInTheDocument();
       });
     });
 
@@ -125,9 +122,8 @@ describe('Register', () => {
             name: 'Sign up and track your expenses',
           })
         );
-        await waitFor(() => {
-          expect(screen.getByText('Too short!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Too short!')).toBeInTheDocument();
       });
     });
     describe('if password is too long', () => {
@@ -141,9 +137,8 @@ describe('Register', () => {
             name: 'Sign up and track your expenses',
           })
         );
-        await waitFor(() => {
-          expect(screen.getByText('Too long!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Too long!')).toBeInTheDocument();
       });
     });
 
@@ -182,11 +177,10 @@ describe('Register', () => {
             name: 'Sign up and track your expenses',
           })
         );
-        await waitFor(() => {
-          expect(
-            screen.getByText('Password does not match!')
-          ).toBeInTheDocument();
-        });
+
+        expect(
+          await screen.findByText('Password does not match!')
+        ).toBeInTheDocument();
       });
     });
 
@@ -218,9 +212,8 @@ describe('Register', () => {
     describe('and the required data is empty', () => {
       it('shows the correct error', async () => {
         user.click(screen.getByRole('button', { name: 'Sign up' }));
-        await waitFor(() => {
-          expect(screen.queryAllByText('Required!').length).toBe(4);
-        });
+
+        expect(await screen.findAllByText('Required!')).toHaveLength(4);
       });
     });
     describe('and the required data is filled', () => {

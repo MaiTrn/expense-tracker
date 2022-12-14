@@ -44,9 +44,8 @@ describe('Login', () => {
       it('shows the correct error', async () => {
         user.click(screen.getByPlaceholderText('Enter your email'));
         user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
-        await waitFor(() => {
-          expect(screen.getByText('Required!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Required!')).toBeInTheDocument();
       });
     });
 
@@ -57,9 +56,8 @@ describe('Login', () => {
           'test'
         );
         user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
-        await waitFor(() => {
-          expect(screen.getByText('Invalid email!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Invalid email!')).toBeInTheDocument();
       });
     });
 
@@ -83,9 +81,8 @@ describe('Login', () => {
       it('shows the correct error', async () => {
         user.click(screen.getByPlaceholderText('Enter your password'));
         user.click(screen.getByRole('heading', { name: 'Expense Tracker' }));
-        await waitFor(() => {
-          expect(screen.getByText('Required!')).toBeInTheDocument();
-        });
+
+        expect(await screen.findByText('Required!')).toBeInTheDocument();
       });
     });
 
@@ -107,9 +104,8 @@ describe('Login', () => {
     describe('and the required data is empty', () => {
       it('shows the correct error', async () => {
         user.click(screen.getByRole('button', { name: 'Sign in' }));
-        await waitFor(() => {
-          expect(screen.queryAllByText('Required!').length).toBe(2);
-        });
+
+        expect(await screen.findAllByText('Required!')).toHaveLength(2);
       });
     });
     describe('and the required data is filled', () => {

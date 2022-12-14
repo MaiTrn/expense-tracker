@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { render, screen, waitFor } from '../../utils/test-utils';
+import { render, screen } from '../../utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import ExpenseList from './ExpenseList';
 
@@ -84,9 +83,9 @@ describe('ExpenseList', () => {
       });
       user.click(screen.getByRole('button'));
 
-      await waitFor(() => {
-        expect(screen.getByText('Successfully updated!')).toBeInTheDocument();
-      });
+      expect(
+        await screen.findByText('Successfully updated!')
+      ).toBeInTheDocument();
     });
   });
 });
