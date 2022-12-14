@@ -35,7 +35,11 @@ const ExpenseList = (props) => {
             const iconName = icons[category.icon];
             return category.expenses?.map((expense) => {
               return (
-                <div key={expense.id} style={styles.itemContainer}>
+                <div
+                  key={expense.id}
+                  style={styles.itemContainer}
+                  data-testid='expense-container'
+                >
                   <div style={styles.expenseContainer}>
                     <FontAwesomeIcon
                       icon={fas[iconName]}
@@ -68,7 +72,7 @@ const ExpenseList = (props) => {
                       )}
                     </div>
                   </div>
-                  <div
+                  <button
                     style={{
                       ...styles.confirmButton,
                       backgroundColor: category.color,
@@ -83,7 +87,7 @@ const ExpenseList = (props) => {
                       color={COLORS.white}
                       size='xl'
                     />
-                  </div>
+                  </button>
                 </div>
               );
             });
@@ -180,5 +184,6 @@ const styles = {
     height: '100%',
     width: 40,
     cursor: 'pointer',
+    border: 0,
   },
 };
