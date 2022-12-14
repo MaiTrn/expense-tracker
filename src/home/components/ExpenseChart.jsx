@@ -147,7 +147,7 @@ const styles = {
   },
   expenseText: {
     fill: COLORS.darkGray,
-    fontSize: SIZES.body2,
+    fontSize: SIZES.body,
     margin: 0,
   },
   shadow: {

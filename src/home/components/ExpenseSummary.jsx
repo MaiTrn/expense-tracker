@@ -131,7 +131,7 @@ const styles = {
   },
   categoryTotal: {
     fontWeight: 'bold',
-    fontSize: SIZES.body2,
+    fontSize: SIZES.body,
     margin: 0,
   },
 };
