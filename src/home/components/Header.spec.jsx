@@ -33,17 +33,17 @@ describe('Header', () => {
       user.click(screen.getByRole('img', { name: 'profile' }));
       expect(await screen.findByText('Log out')).toBeInTheDocument();
     });
-  });
 
-  describe('when clicking on the logout button', () => {
-    it('calls the signOut function', async () => {
-      render(<Header />);
+    describe('when clicking on the logout button', () => {
+      it('calls the signOut function', async () => {
+        render(<Header />);
 
-      user.click(screen.getByRole('img', { name: 'profile' }));
-      user.click(await screen.findByText('Log out'));
+        user.click(screen.getByRole('img', { name: 'profile' }));
+        user.click(await screen.findByText('Log out'));
 
-      await waitFor(() => {
-        expect(signOut).toHaveBeenCalled();
+        await waitFor(() => {
+          expect(signOut).toHaveBeenCalled();
+        });
       });
     });
   });
