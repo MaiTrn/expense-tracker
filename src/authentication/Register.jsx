@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { auth, methods, db } from '../firebase';
+import { auth, methods, db } from '../utils/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 

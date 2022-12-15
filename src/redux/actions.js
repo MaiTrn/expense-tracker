@@ -9,7 +9,7 @@ import {
   getDoc,
   addDoc,
 } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth, db } from '../utils/firebase';
 import {
   CATEGORIES_CHANGE,
   EXPENSES_CHANGE,

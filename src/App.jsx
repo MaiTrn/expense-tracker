@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
-import { methods, auth } from './firebase';
+import { methods, auth } from './utils/firebase';
 import Login from './authentication/Login';
 import Register from './authentication/Register';
 import Home from './home/Home';

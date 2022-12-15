@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth, methods } from '../../firebase';
+import { auth, methods } from '../../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
