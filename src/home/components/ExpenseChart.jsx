@@ -100,11 +100,11 @@ const ExpenseChart = (props) => {
                 },
               ]}
             />
-            <text x={191} y={200} style={styles.expenseCountTitle}>
+            <text x={190} y={200} style={styles.expenseCountTitle}>
               {totalExpenseCount}
             </text>
             <text x={160} y={230} style={styles.expenseText}>
-              Expenses
+              {totalExpenseCount > 1 ? 'Expenses' : 'Expense'}
             </text>
           </svg>
           {/*box shadow*/}
