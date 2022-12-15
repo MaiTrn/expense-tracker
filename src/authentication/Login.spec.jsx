@@ -128,6 +128,30 @@ describe('Login', () => {
           );
         });
       });
+
+      describe('if there is an error in logging in', () => {
+        it('shows the error banner', async () => {
+          signInWithEmailAndPassword.mockImplementationOnce(() =>
+            Promise((_, reject) => {
+              setTimeout(() => reject(new Error('Error')), 50);
+            })
+          );
+
+          await user.type(
+            screen.getByPlaceholderText('Enter your email'),
+            'test@gmail.com'
+          );
+          await user.type(
+            screen.getByPlaceholderText('Enter your password'),
+            'testing'
+          );
+          user.click(screen.getByRole('button', { name: 'Sign in' }));
+
+          expect(
+            await screen.findByText('Incorrect username or password')
+          ).toBeInTheDocument();
+        });
+      });
     });
   });
 });

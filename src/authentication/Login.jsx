@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Snackbar, Alert } from '@mui/material';
 import { auth, methods } from '../utils/firebase';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,12 +17,14 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
+  const [error, setError] = useState(false);
+
   const onLogin = async (values) => {
     const { email, password } = values;
     try {
       await methods.signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
-      console.log(err);
+      setError(true);
     }
   };
 
@@ -83,6 +86,20 @@ const Login = () => {
             </Link>
           </div>
         </div>
+        <Snackbar
+          open={error}
+          autoHideDuration={4000}
+          onClose={() => setError(false)}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        >
+          <Alert
+            onClose={() => setError(false)}
+            severity='error'
+            sx={{ width: '100%' }}
+          >
+            Incorrect username or password
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );
