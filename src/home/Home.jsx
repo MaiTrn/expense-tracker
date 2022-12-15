@@ -39,12 +39,19 @@ const Home = (props) => {
             }}
           >
             <ExpenseChart {...{ selectedCategory, setSelectedCategory }} />
-            <div style={{ height: 100, paddingTop: '5vh' }}>
+            <div
+              style={{ height: 100, paddingTop: '5vh' }}
+              data-testid='calendar'
+            >
               <Calendar />
             </div>
           </div>
           <ExpenseSummary {...{ selectedCategory, setSelectedCategory }} />
-          <button style={styles.addButton} onClick={() => setOpen(true)}>
+          <button
+            style={styles.addButton}
+            onClick={() => setOpen(true)}
+            data-testid='add-button'
+          >
             <FontAwesomeIcon icon={faPlus} color={COLORS.white} size='2xl' />
           </button>
         </div>
