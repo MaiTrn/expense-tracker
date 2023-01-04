@@ -101,6 +101,7 @@ const confirmExpense = (item, categoryId) => {
     await updateDoc(expenseRef, {
       status: 'C',
       creation: {
+        date: currentDate.getDate(),
         month: currentDate.getMonth() + 1,
         year: currentDate.getFullYear(),
       },
