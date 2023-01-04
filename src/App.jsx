@@ -7,6 +7,14 @@ import Login from './authentication/Login';
 import Register from './authentication/Register';
 import Home from './home/Home';
 
+const MainPath = ({ loggedIn }) => {
+  if (!loggedIn) {
+    return <Login />;
+  }
+
+  return <Home />;
+};
+
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -22,14 +30,6 @@ const App = () => {
     });
   }, []);
 
-  const MainPath = () => {
-    if (!loggedIn) {
-      return <Login />;
-    }
-
-    return <Home />;
-  };
-
   if (!loaded) {
     return <div>Loading...</div>;
   }
@@ -37,7 +37,7 @@ const App = () => {
   return (
     <Routes>
       <Route path='/signup' element={<Register />} />
-      <Route path='/' element={<MainPath />} />
+      <Route path='/' element={<MainPath loggedIn={loggedIn} />} />
     </Routes>
   );
 };
