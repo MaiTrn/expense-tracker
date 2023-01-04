@@ -60,95 +60,81 @@ const AddExpenseModal = (props) => {
     <div style={styles.background}>
       <div style={styles.container}>
         <h2 style={styles.title}>ADD NEW EXPENSE</h2>
-        {categories.length === 0 ? (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              paddingTop: 20,
-            }}
+        <div style={styles.formContainer}>
+          <Input
+            label='Category*'
+            select
+            items={categories}
+            value={values.selectedCategory}
+            onChange={handleChange('selectedCategory')}
+            errors={errors.selectedCategory}
+            touched={touched.selectedCategory}
+            onBlur={handleBlur('selectedCategory')}
+          />
+          <Input
+            label='Title*'
+            placeholder='Expense title'
+            onChange={handleChange('title')}
+            value={values.title}
+            errors={errors.title}
+            touched={touched.title}
+            onBlur={handleBlur('title')}
+          />
+          <Input
+            label='Description'
+            placeholder='Expense description'
+            onChange={handleChange('description')}
+            value={values.description}
+            errors={errors.description}
+            touched={touched.description}
+            onBlur={handleBlur('description')}
+          />
+          <Input
+            label='Location'
+            placeholder='Expense location'
+            onChange={handleChange('location')}
+            value={values.location}
+            errors={errors.location}
+            touched={touched.location}
+            onBlur={handleBlur('location')}
+          />
+          <Input
+            label='Total*'
+            placeholder='Expense cost'
+            onChange={handleChange('total')}
+            type='number'
+            value={values.total}
+            errors={errors.total}
+            touched={touched.total}
+            onBlur={handleBlur('total')}
+          />
+          <Input
+            label='Status*'
+            select
+            value={values.status}
+            items={statusType}
+            onChange={handleChange('status')}
+            placeholder='Expense status'
+            errors={errors.status}
+            touched={touched.status}
+            onBlur={handleBlur('status')}
+          />
+        </div>
+        <div style={styles.buttonContainer}>
+          <button
+            style={styles.cancelButton}
+            onClick={() => props.setOpen(false)}
           >
-            Loading categories...
-          </div>
-        ) : (
-          <>
-            <div style={styles.formContainer}>
-              <Input
-                label='Category*'
-                select
-                items={categories}
-                value={values.selectedCategory}
-                onChange={handleChange('selectedCategory')}
-                errors={errors.selectedCategory}
-                touched={touched.selectedCategory}
-                onBlur={handleBlur('selectedCategory')}
-              />
-              <Input
-                label='Title*'
-                placeholder='Expense title'
-                onChange={handleChange('title')}
-                value={values.title}
-                errors={errors.title}
-                touched={touched.title}
-                onBlur={handleBlur('title')}
-              />
-              <Input
-                label='Description'
-                placeholder='Expense description'
-                onChange={handleChange('description')}
-                value={values.description}
-                errors={errors.description}
-                touched={touched.description}
-                onBlur={handleBlur('description')}
-              />
-              <Input
-                label='Location'
-                placeholder='Expense location'
-                onChange={handleChange('location')}
-                value={values.location}
-                errors={errors.location}
-                touched={touched.location}
-                onBlur={handleBlur('location')}
-              />
-              <Input
-                label='Total*'
-                placeholder='Expense cost'
-                onChange={handleChange('total')}
-                type='number'
-                value={values.total}
-                errors={errors.total}
-                touched={touched.total}
-                onBlur={handleBlur('total')}
-              />
-              <Input
-                label='Status*'
-                select
-                value={values.status}
-                items={statusType}
-                onChange={handleChange('status')}
-                placeholder='Expense status'
-                errors={errors.status}
-                touched={touched.status}
-                onBlur={handleBlur('status')}
-              />
-            </div>
-            <div style={styles.buttonContainer}>
-              <button
-                style={styles.cancelButton}
-                onClick={() => props.setOpen(false)}
-              >
-                CANCEL
-              </button>
-              <button
-                type='submit'
-                style={styles.saveButton}
-                onClick={handleSubmit}
-              >
-                SAVE
-              </button>
-            </div>
-          </>
-        )}
+            CANCEL
+          </button>
+          <button
+            type='submit'
+            style={styles.saveButton}
+            onClick={handleSubmit}
+          >
+            SAVE
+          </button>
+        </div>
       </div>
     </div>
   );

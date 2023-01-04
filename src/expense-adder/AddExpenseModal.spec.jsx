@@ -34,9 +34,7 @@ describe('AddExpenseModal', () => {
 
   describe('render', () => {
     it('shows the modal correctly', () => {
-      render(<AddExpenseModal />, {
-        preloadedState: { categoriesData: initialCategoriesData },
-      });
+      render(<AddExpenseModal />);
 
       expect(
         screen.getByRole('heading', { name: 'ADD NEW EXPENSE' })
