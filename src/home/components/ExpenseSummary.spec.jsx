@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import ExpenseSummary from './ExpenseSummary';
 
 describe('ExpenseSummary', () => {
+  const date = new Date();
   const initialCategoriesData = [
     {
       color: '#F6A192',
@@ -12,14 +13,14 @@ describe('ExpenseSummary', () => {
       name: 'Beauty & Care',
       expenses: [
         {
-          creation: { year: 2022, month: 12, date: 1 },
+          creation: { year: 2022, month: date.getMonth() + 1, date: 1 },
           description: 'Test expense',
           title: 'test',
           status: 'C',
           total: 15,
         },
         {
-          creation: { year: 2022, month: 12, date: 10 },
+          creation: { year: 2022, month: date.getMonth() + 1, date: 10 },
           description: 'Test expense',
           title: 'test 2',
           status: 'C',
@@ -34,7 +35,7 @@ describe('ExpenseSummary', () => {
       name: 'Education',
       expenses: [
         {
-          creation: { year: 2022, month: 12, date: 12 },
+          creation: { year: 2022, month: date.getMonth() + 1, date: 12 },
           description: 'education expense',
           title: 'Education test',
           status: 'C',

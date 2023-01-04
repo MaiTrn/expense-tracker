@@ -17,6 +17,7 @@ jest.mock('../redux/actions', () => ({
 }));
 
 describe('Home', () => {
+  const date = new Date();
   const initialCategoriesData = [
     {
       color: '#F6A192',
@@ -25,7 +26,7 @@ describe('Home', () => {
       name: 'Beauty & Care',
       expenses: [
         {
-          creation: { year: 2022, month: 12, date: 1 },
+          creation: { year: 2022, month: date.getMonth() + 1, date: 1 },
           description: 'Test expense',
           title: 'test pending',
           location: 'testplace',
@@ -34,7 +35,7 @@ describe('Home', () => {
           id: '3',
         },
         {
-          creation: { year: 2022, month: 12, date: 1 },
+          creation: { year: 2022, month: date.getMonth() + 1, date: 1 },
           description: 'Test expense',
           title: 'test confirmed',
           location: 'testplace',
@@ -51,7 +52,7 @@ describe('Home', () => {
   describe('render', () => {
     it('shows correct content initially', () => {
       render(<Home />);
-
+      screen.debug();
       expect(screen.getByRole('navigation')).toBeInTheDocument();
       expect(
         screen.getByRole('heading', { name: 'Expense Tracker' })

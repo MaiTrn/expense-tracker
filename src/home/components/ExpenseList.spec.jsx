@@ -10,6 +10,7 @@ jest.mock('../../redux/actions', () => ({
 }));
 
 describe('ExpenseList', () => {
+  const date = new Date();
   const initialCategoriesData = [
     {
       color: '#F6A192',
@@ -18,7 +19,7 @@ describe('ExpenseList', () => {
       name: 'Beauty & Care',
       expenses: [
         {
-          creation: { year: 2022, month: 12, date: 1 },
+          creation: { year: 2022, month: date.getMonth() + 1, date: 1 },
           description: 'Test expense',
           title: 'test',
           location: 'testplace',
