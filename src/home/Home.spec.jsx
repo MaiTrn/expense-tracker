@@ -52,7 +52,6 @@ describe('Home', () => {
   describe('render', () => {
     it('shows correct content initially', () => {
       render(<Home />);
-      screen.debug();
       expect(screen.getByRole('navigation')).toBeInTheDocument();
       expect(
         screen.getByRole('heading', { name: 'Expense Tracker' })
