@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitForElementToBeRemoved } from '../utils/test-utils';
+import { render, screen } from '../utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import Home from './Home';
 
@@ -15,6 +15,20 @@ jest.mock('../redux/actions', () => ({
     type: 'TESTING',
   }),
 }));
+
+jest.mock('../expense-adder/AddExpenseModal', () => ({ setAdded, setOpen }) => {
+  const mockAdd = () => {
+    setAdded(true);
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <h2>ADD NEW EXPENSE</h2>
+      <button onClick={mockAdd}>SAVE</button>
+    </div>
+  );
+});
 
 describe('Home', () => {
   const date = new Date();
@@ -111,33 +125,15 @@ describe('Home', () => {
         });
         user.click(screen.getByTestId('add-button'));
 
-        await user.type(
-          await screen.findByRole('textbox', { name: 'Title*' }),
-          'test'
-        );
-
-        await user.type(
-          screen.getByRole('spinbutton', { name: 'Total*' }),
-          '20'
-        );
-
-        user.click(screen.getByLabelText('Category*'));
-        user.click(
-          await screen.findByRole('option', {
-            name: initialCategoriesData[0].name,
-          })
-        );
-
-        user.click(screen.getByLabelText('Status*'));
-        user.click(await screen.findByRole('option', { name: 'Confirm' }));
-
-        await waitForElementToBeRemoved(() => screen.queryAllByRole('option'));
-
-        user.click(screen.getByRole('button', { name: 'SAVE' }));
+        user.click(await screen.findByRole('button', { name: 'SAVE' }));
 
         expect(
           await screen.findByText('Added a new expense!')
         ).toBeInTheDocument();
+
+        expect(
+          screen.queryByRole('heading', { name: 'ADD NEW EXPENSE' })
+        ).not.toBeInTheDocument();
       });
     });
   });
