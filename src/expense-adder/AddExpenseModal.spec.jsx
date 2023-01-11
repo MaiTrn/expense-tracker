@@ -4,11 +4,11 @@ import {
   screen,
   waitFor,
   waitForElementToBeRemoved,
-} from '../utils/test-utils';
+} from 'utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import AddExpenseModal from './AddExpenseModal';
 
-jest.mock('../redux/actions', () => ({
+jest.mock('redux/actions', () => ({
   addExpense: () => ({
     type: 'TESTING',
   }),

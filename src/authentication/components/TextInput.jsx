@@ -4,7 +4,7 @@ import {
   faCircleXmark,
   faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import { COLORS, SIZES } from '../../constants/theme';
+import { COLORS, SIZES } from 'constants/theme';
 
 const TextInput = ({ icon, touched, errors, ...props }) => {
   const color = !touched

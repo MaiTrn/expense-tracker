@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '../utils/test-utils';
+import { render, screen } from 'utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import Home from './Home';
 
@@ -7,7 +7,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => jest.fn(),
 }));
 
-jest.mock('../redux/actions', () => ({
+jest.mock('redux/actions', () => ({
   addExpense: () => ({
     type: 'TESTING',
   }),
@@ -16,7 +16,7 @@ jest.mock('../redux/actions', () => ({
   }),
 }));
 
-jest.mock('../expense-adder/AddExpenseModal', () => ({ setAdded, setOpen }) => {
+jest.mock('expense-adder/AddExpenseModal', () => ({ setAdded, setOpen }) => {
   const mockAdd = () => {
     setAdded(true);
     setOpen(false);
@@ -111,18 +111,14 @@ describe('Home', () => {
 
   describe('when clicking on the add new expense button', () => {
     it('shows the modal', async () => {
-      render(<Home />, {
-        preloadedState: { categoriesData: initialCategoriesData },
-      });
+      render(<Home />);
       user.click(screen.getByTestId('add-button'));
 
       expect(await screen.findByText('ADD NEW EXPENSE')).toBeInTheDocument();
     });
     describe('when adding a new expense successfully', () => {
       it('shows a notification banner', async () => {
-        render(<Home />, {
-          preloadedState: { categoriesData: initialCategoriesData },
-        });
+        render(<Home />);
         user.click(screen.getByTestId('add-button'));
 
         user.click(await screen.findByRole('button', { name: 'SAVE' }));

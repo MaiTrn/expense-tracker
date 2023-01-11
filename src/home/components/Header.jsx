@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { auth, methods } from '../../utils/firebase';
+import { auth, methods } from 'utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-import { COLORS, SIZES } from '../../constants/theme';
+import { COLORS, SIZES } from 'constants/theme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const profilePic = require('../../assets/profile_picture.png');
+const profilePic = require('assets/profile_picture.png');
 
 const Header = () => {
   const [open, setOpen] = useState(false);

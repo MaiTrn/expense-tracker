@@ -9,7 +9,7 @@ import {
   getDoc,
   addDoc,
 } from 'firebase/firestore';
-import { auth, db } from '../utils/firebase';
+import { auth, db } from 'utils/firebase';
 import {
   CATEGORIES_CHANGE,
   EXPENSES_CHANGE,
@@ -74,11 +74,13 @@ const fetchCategories = () => {
     );
 
     const querySnapshot = await getDocs(categoriesQuery);
-    const categoriesData = querySnapshot.docs.map((doc) => {
-      const data = doc.data();
-      const id = doc.id;
-      return { id, ...data };
-    });
+    const categoriesData = querySnapshot
+      ? querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          const id = doc.id;
+          return { id, ...data };
+        })
+      : [];
     dispatch({ type: CATEGORIES_CHANGE, categoriesData });
     categoriesData.forEach((category) => {
       dispatch(fetchExpensesFromUser(category.id));

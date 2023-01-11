@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { COLORS, SIZES } from '../constants/theme';
+import { COLORS, SIZES } from 'constants/theme';
 import Input from './components/Input';
-import { addExpense } from '../redux/actions';
+import { addExpense } from 'redux/actions';
 
 const expenseSchema = Yup.object().shape({
   selectedCategory: Yup.string().required('Required!'),

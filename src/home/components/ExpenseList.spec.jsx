@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen } from '../../utils/test-utils';
+import { render, screen } from 'utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import ExpenseList from './ExpenseList';
 
-jest.mock('../../redux/actions', () => ({
+jest.mock('redux/actions', () => ({
   confirmExpense: () => ({
     type: 'TESTING',
   }),

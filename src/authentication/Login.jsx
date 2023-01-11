@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Snackbar, Alert } from '@mui/material';
-import { auth, methods } from '../utils/firebase';
+import { auth, methods } from 'utils/firebase';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
-import { COLORS, SIZES } from '../constants/theme';
+import { COLORS, SIZES } from 'constants/theme';
 import TextInput from './components/TextInput';
 
-const bg = require('../assets/bg.png');
+const bg = require('assets/bg.png');
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string().required('Required!'),

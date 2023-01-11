@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { COLORS, SIZES } from '../../constants/theme';
+import { COLORS, SIZES } from 'constants/theme';
 
 const ExpenseSummary = (props) => {
   const categories = props.categoriesData.map((item) => {

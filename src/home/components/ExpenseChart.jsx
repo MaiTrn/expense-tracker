@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { VictoryPie } from 'victory';
-import { COLORS, SIZES } from '../../constants/theme';
+import { COLORS, SIZES } from 'constants/theme';
 
 const ExpenseChart = (props) => {
   // Filter expenses with "Confirmed status"

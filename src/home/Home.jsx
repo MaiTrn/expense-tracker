@@ -7,15 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import Header from './components/Header';
-import { COLORS } from '../constants/theme';
-import { fetchCategories } from '../redux/actions';
+import { COLORS } from 'constants/theme';
+import { fetchCategories } from 'redux/actions';
 
 import ExpenseList from './components/ExpenseList';
 import ExpenseChart from './components/ExpenseChart';
 import ExpenseSummary from './components/ExpenseSummary';
-import AddExpenseModal from '../expense-adder/AddExpenseModal';
+import AddExpenseModal from 'expense-adder/AddExpenseModal';
 import 'react-calendar/dist/Calendar.css';
-import '../constants/Calendar.css';
+import 'constants/Calendar.css';
 
 const Home = (props) => {
   const [selectedCategory, setSelectedCategory] = useState(null);

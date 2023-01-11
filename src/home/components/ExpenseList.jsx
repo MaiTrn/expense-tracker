@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { Snackbar, Alert } from '@mui/material';
 
-import icons from '../../constants/icons';
-import { COLORS, SIZES } from '../../constants/theme';
-import { confirmExpense, fetchCategories } from '../../redux/actions';
+import icons from 'constants/icons';
+import { COLORS, SIZES } from 'constants/theme';
+import { confirmExpense, fetchCategories } from 'redux/actions';
 
 const ExpenseList = (props) => {
   const [open, setOpen] = useState(false);

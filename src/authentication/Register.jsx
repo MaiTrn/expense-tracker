@@ -2,14 +2,14 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { auth, methods, db } from '../utils/firebase';
+import { auth, methods, db } from 'utils/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { COLORS, SIZES } from '../constants/theme';
+import { COLORS, SIZES } from 'constants/theme';
 import TextInput from './components/TextInput';
 
-const bg = require('../assets/bg.png');
+const bg = require('assets/bg.png');
 
 const RegisterSchema = Yup.object().shape({
   password: Yup.string()
