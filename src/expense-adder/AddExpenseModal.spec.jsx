@@ -122,6 +122,7 @@ describe('AddExpenseModal', () => {
           name: initialCategoriesData[0].name,
         })
       );
+      await waitForElementToBeRemoved(() => screen.queryAllByRole('option'));
 
       user.click(screen.getByLabelText('Status*'));
       user.click(await screen.findByRole('option', { name: 'Confirm' }));
@@ -187,7 +188,7 @@ describe('AddExpenseModal', () => {
           preloadedState: { categoriesData: initialCategoriesData },
         });
 
-        user.click(screen.getByRole('button', { name: 'SAVE' }));
+        await user.click(screen.getByRole('button', { name: 'SAVE' }));
 
         expect(await screen.findAllByText('Required!')).toHaveLength(4);
       });
@@ -221,11 +222,12 @@ describe('AddExpenseModal', () => {
             name: initialCategoriesData[0].name,
           })
         );
+        //wait for the list to close
+        await waitForElementToBeRemoved(() => screen.queryAllByRole('option'));
 
         //imitates choosing a status from the select component
         user.click(screen.getByLabelText('Status*'));
         user.click(await screen.findByRole('option', { name: 'Confirm' }));
-
         //wait for the list to close
         await waitForElementToBeRemoved(() => screen.queryAllByRole('option'));
 
